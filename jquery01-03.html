@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 1-3</title>
+
+    <!-- jquery효과 : jquery에서 제공하는 함수를 사용하면 hide,fade,slide등의 효과를 쉽게 사용할 수 있음
+        -css의 animation 중 hide, show, fade out, fade in, slide down, slide up 기능을 함수로 제공함 
+         
+        hide(), show(), toggle() - display :none 을 사용한것과 동일한 효과
+        -시간은 1/1000초를 기준으로 사용함(1초가1000임), slow, fast
+        -사용법 : $(선택자).hide(속도, 실행함수);
+    
+        fade효과 : jquery에서 fadeIn, fadeOut, fadeToggle, fadeTo 함수를 제공함
+        -시간은 1/1000초 사용(slow, fast사용)
+        -사용법 : $(선택자), fadeIn(시간, 실행함수);       
+                  fadeTo(시간, 투명도, 실행함수) - 사용자가 지정한 투명도로 변경하는 함수
+        slide효과 : jquery에서 slideDown, slideUp, slideToggle 함수를 제공함 
+        -시간은 1/1000초 사용(slow, fast사용)
+        -사용법 : $(선택자).slideDown(시간, 실행함수)   
+    
+        animate : jquery를 통해서 사용자 지정 애니메이션을 만들 수 잇는 함수
+        -animate 를 이용하면 css의 animation 속성을 손쉽게 만들 수 있음
+        -시간은 1/1000초 사용(slow, fast사용)
+        -애니메이션 동작을 할 속성을 여러개 지정할 수 있음
+        -속성값 입력 시 상대값으로 데이터를 입력할 수 있음
+        - +=, -= 을 사용하여 기존의 속성값에 데이터를 추가할 수 있음
+        -여러개의 애니메이션을 사용하여 단계적으로 동작하는 애니메이션을 제작할 수 있음
+        -animate에서 속성명을 입력할 때 css속성명이 '-'가 들어가 있는 속성명은 '-'를 제거하고 이어지는 단어의 첫영문자를 
+         대문자로 입력(fontSize, backgroundColor, paddingLeft, marginTop, ...)
+        -사용법 : $(선택자).animate({속성명1:속성값, 속성명2:속성값2, ...}, 속도, 실행함수);   
+    
+        stop(): 애니메이션이 효과가 끝나기 전에 애니메이션을 중지시키는 함수 사용법
+        -stopAll : 기본값 false, 애니메이션 대기열도 함께 중지하는지 여부
+        -goToEnd : 기본값 false, 애니메이션이 stop()함수 실행과 동시에 완료로 처리할 것인지 여부
+        -사용법 : $(선택자).stop(stopAll,goToEnd)
+        
+        jquery 메서드 체이닝 : 체이닝이란 jquery 함수(메서드)를 연결해서 한번에 사용하는 방법
+        -동일한 html태그에 대해서 jquery함수를 한번에 하나씩 실행한는 것이 아니라 연속적으로 이어서 기술하는 방식
+        -html 태그를 한번 검색하여 여러가지 함수를 한번에 실행가능함
+        -'-'기호를 사용하여 함수를 이어서 기술하면 됨
+        사용법 : $(선택자).jquery함수1().jquery함수2(). ...;   -->
+
+    <script src="./jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#btnHide").on("click", function() {
+                $("#HideShow").hide();
+            });
+            $("#btnShow").on("click", function() {
+                $("#HideShow").show();
+            });
+
+            //시간 사용
+            $("#btnHide2").on("click", function() {
+                $("#hideshow2").hide("slow");
+            });
+            $("#btnShow2").on("click", function() {
+                $("#hideshow2").show(2000);
+            });
+            $("#btntoggle").on("click", function(){
+                $("#hideshowtoggle").toggle("fast");
+            });
+
+            // fade 효과
+            $("#btnFadeIn").on("click", function() {
+                $("#div1 > .red").fadeIn();
+                $("#div1 > .green").fadeIn("slow");
+                $("#div1 > .blue").fadeIn(3000);
+            });
+
+            $("#btnFadeOut").on("click", function() {
+                $("#div1 > .red").fadeOut();
+                $("#div1 > .green").fadeOut("slow");
+                $("#div1 > .blue").fadeOut(3000);
+            });
+
+            $("#btnFadeToggle").on("click", function() {
+                $("#div1 > .red").fadeToggle();
+                $("#div1 > .green").fadeToggle("slow");
+                $("#div1 > .blue").fadeToggle(3000);
+            });
+
+            $("#btnFadeTo").on("click", function() {
+                $("#div2 > .red").fadeTo("fast", 0.2);
+                $("#div2 > .green").fadeTo(2000, 0.5);
+                $("#div2 > .blue").fadeTo("slow", 0.7);
+            });
+        });
+    </script>
+    
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        #div1 > .box {display: none;}
+        .red {background-color: red;}
+        .green {background-color: green;}
+        .blue {background-color: blue;}
+
+    </style>
+</head>
+<body>
+    <h3>Hide/Show</h3>
+    <p id = "HideShow">아래의 버튼을 클릭하면 사라지거나 나옴</p>
+    <button id = "btnHide">Hide</button>
+    <button id = "btnShow">Show</button>
+
+    <br><hr><br>
+
+    <h4>Hide/Show 에 시간 사용</h4>
+    <button type="button" id = "btnHide2">Hide</button>
+    <button type="button" id = "btnShow2">Show</button>
+    <p id = "hideshow2">버튼 클릭시 사라지거나 출력됨</p>
+
+    <br><hr><br>
+    <h3>toggle 사용</h3>
+    <button type="button" id="btntoggle">toggle</button>
+    <p id="hideshowtoggle">토글 버튼 클릭시 사라지거나 출력됨</p>
+
+    <br><hr><br>
+
+    <h3>fade In/Out/Toggle</h3>
+    <div id="div1">
+        <button id="btnFadeIn">Fade In 효과</button>
+        <button id="btnFadeOut">Fade Out 효과</button>
+        <button id="btnFadeToggle">Fade Toggle 효과</button>
+        <div class="box red"></div>
+        <div class="box green"></div>
+        <div class="box blue"></div>
+    </div>
+
+    <br><hr><br>
+
+    <h3>fade To</h3>
+    <div id="div2">
+        <button id="btnFadeTo">Fade To 효과</button>
+        <div class="box red"></div>
+        <div class="box green"></div>
+        <div class="box blue"></div>
+    </div>
+</body>
+</html>

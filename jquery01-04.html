@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 1-4</title>
+    <script src="./jquery-3.5.1.js"></script>
+    <script src="./jquery.color-2.1.2.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            $("#div1 > .flip").on("click", function() {
+                $("#div1 > .panel").slideDown("slow");
+            });
+
+            $("#div2 > .flip").on("click", function() {
+                $("#div2 > .panel").slideUp("slow");
+            });
+            
+            $("#div3 > .flip").on("click", function() {
+                $("#div3 > .panel").slideToggle("slow");
+            });
+
+            // animate 함수
+            $("#div4 > .ani1").on("click", function() {
+                $("#div4 > .ani1").animate({left: "250px"});
+            });
+
+            $("#div4 > .ani2").on("click", function() {
+                $("#div4 > .ani2").animate({
+                    left: "250px",
+                    opacity: "0.5",
+                    height: "150px",
+                    width: "150px"
+                });
+            });
+            
+            $("#div4 > .ani3").on("click", function(){
+                $("#div4 > .ani3").animate({
+                    left: "250px",
+                    height: "+=100px",
+                    width: "+=100px"
+                });
+            });
+
+            $("#div4 > .ani4").on("click", function() {
+                $("#div4 > .ani4").animate({
+                    height:"300px",
+                    opacity:"0.4"
+                }, "slow");
+                $("#div4 > .ani4").animate({
+                    width:"300px",
+                    opacity:"0.8"
+                }, "slow");
+                $("#div4 > .ani4").animate({
+                    height:"100px",
+                    opacity:"0.4"
+                }, "slow");
+                $("#div4 > .ani4").animate({
+                    width:"100px",
+                    opacity:"0.8"
+                }, "slow");
+            });
+            
+            // 문제 1)
+            $("#div5 > .ani5").on("click", function() {
+                $("#div5 > .ani5").animate({
+                    left:"300px",
+                    fontSize: "8px",
+                    color:"red"                                      
+                }, "slow");
+                $("#div5 > .ani5").animate({
+                    fontSize: "24px",
+                    color:"blue"                      
+                }, "slow");
+                
+            });
+        });
+    </script>
+
+    <style>
+        .panel, .flip {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: 1px solid lightgray;
+        }
+
+        .panel { padding: 50px;}
+        #div1 > .panel {display: none;}
+        
+        #div4 {
+            position: relative;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+        #div4 > .ani1 {
+            position: absolute;
+            background-color: yellowgreen;
+        }
+
+        #div4 > .ani2 {
+            position: absolute;
+            background-color: yellowgreen;
+            top: 150px;
+            left: 0px;
+        }
+
+        #div4 > .ani3 {
+            position: absolute;
+            background-color: yellowgreen;
+            top: 260px;
+            left: 0px;
+        }
+
+        #div4 > .ani4 {
+            position: absolute;
+            background-color: yellowgreen;
+            left: 0px;
+            top: 380px;
+        }
+        
+        /* 문제1) */
+        .box2 {
+            width: 200px;
+            height: 200px;
+        }
+        #div5 > .ani5 {
+            top: 1140px;
+            position: absolute;
+            background-color: white;
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <h3>slide Down</h3>
+        <div class="flip"> 클릭 시 아래의 div 영역 표시</div>
+        <div class="panel">클릭 시 표시되는 div 영역</div>
+    </div>
+
+    <br><hr><br>
+
+    <div id="div2">
+        <h3>slide Up</h3>
+        <div class="flip"> 클릭 시 아래의 div 영역 숨김</div>
+        <div class="panel">클릭 시 숨겨지는 div 영역</div>
+    </div>
+
+    <div id="div3">
+        <h3>slide Toggle</h3>
+        <div class="flip"> 클릭 시 아래의 div 영역 숨김/표시</div>
+        <div class="panel">클릭 시 숨김/표시되는 div 영역</div>
+     </div>
+
+     <br><hr><br>
+
+     <div id="div4">
+        <h3>animate</h3>
+        <div class="box ani1"></div>
+        <br>
+        <div class="box ani2">클릭 시 이동하면서 커지고 투명해짐</div>
+        <div class="box ani3">클릭 시 상대값을 사용하여 크기가 커짐</div>
+        <div class="box ani4">클릭 시 애니메이션 연계동작</div>
+     </div>
+
+     <div id="div5">
+         <p class="box2 ani5">Hello</p>
+        </div>
+
+     <!-- 문제1) animate 함수를 사용하여 div 태그의 위치를 왼쪽에서 오른쪽으로 300px이동시키고, 이동 후 div태그 내의
+     p태그의 글자가 8px로 작아졌다가 다시 24px로 커지는 애니메이션을 완성하세요
+     -div 태그의 크기 width : 200px, heigth : 200px
+     -p태그의 글자 : Hello(시작시 글자 크기 16px)
+     -fontSize 사용 -->
+</body>
+</html>

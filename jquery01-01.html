@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jqeury 1-1</title>
+    
+    <!-- jqeury 사용
+    1. jqeury사이트에서 jqeury파일을 다운로드해서 사용
+     - 자신의 서버에 파일을 등록하여 사용하기 때문에 로딩 시간이 짧음
+     - 자신의 서버에 문제가 없는 이상 무조건 동작
+    2. CDN(contents delivery network)를 통해서 jqeury파일을 실시간으로 로딩하여 사용
+     - 외부 서버에서 파일을 로딩하기 때문에 자신의 서버 자원을 소비하지 않음(언제나 최신 버전을 유지하고 있음)
+     - 외부 서버에 문제 발생 시 파일이 로딩되지 않음
+     - 외부 서버 및 여러가지 다른 문제로 인하여 로딩 속도의 문제가 발생함  
+
+    - Jqeury는 기본적으로 CSS 선택자를 사용하여 html태그를 선택함 
+
+    jqeury 사용 방법 : jquery는 기본적으로 $기호를 사용함
+    - $기호가 나오면 jqeury를 사용한다는 의미임
+    - $(CSS선탁자).jqeury함수()
+    - CSS선택자를 그대로 사용하기 때문에 #은 id선택자, .은 claas선택자, html태그는 태그선택자로 동작함 
+    - jquery는 기본적으로 자바스크립트 문법을 그대로 사용하기 떄문에 jquery의 함수를 제외하고는 자바스크립트와 동일함
+    
+    jqeury 이벤트 : jqeury의 이벤트 jqeury사이트의 문서를 참고
+
+    마우스 이벤트
+    -click : 마우스의 클릭 이벤트 발생(더블클릭 이벤트와 중복 등록하면 안됨)
+    -dbclick : 마우스 왼쪽 더블 클릭 이벤트 발생
+    -contextmenu : 마우스 오른쪽 버튼 클릭 이벤트 발생
+    -mouseenter : 마우스 포인트가 특정 html 태그 위로 올라갈 경우 발생
+    -mouseleave : 마우스 포인트가 특정 html 태그 위에서 나갈 경우 발생 
+    -mousemove : 마우스 포인트가 특정 html 태그 위에서 이동할 경우 발생
+
+    키보드 이벤트
+    -keydown : 키보드의 키를 누를때 발생
+    -keyup : 키보드의 키를 눌렀다가 땔 때 발생
+    -keypress : 키보드의 키를 계속 누르고 있는 경우
+    
+    form 이벤트
+    -submit : input태그의 type=submit 버튼이 클릭 되었을 경우 발생
+    -change : input태그의 value값이 변경될 경우 발생
+    -focus : input태그에 focus가 주어졌을 경우 발생
+    -blur : input태그에 focus를 잃었을 경우 발생
+    
+    문서/윈도우 이벤트
+    -resieze : 해당 브라우저 창 크기가 변경될 경우 발생
+    -scroll : 마우스 스크롤이 발생할 경우 발생  -->
+
+    
+
+    <!-- <script src="./jquery-3.5.1.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+
+    </script>
+</head>
+<body>
+    <button id="btn1" type="button">자바 스크립트로 버튼 이벤트</button>
+    <button id="btn2" type="button">jqeury로 버튼 이벤트</button>
+    <button id="btn3" type="button">cdn으로 jqeury 로딩하여 버튼 이벤트</button>
+
+    <script>
+        var btn1 = document.getElementById("btn1");
+
+
+        btn1.addEventListener("click", function() {
+            alert("자바스크립트로 버튼 이벤트 발생");
+        });
+
+        $("#btn2").on("click", function() {
+            alert("jquery로 버튼 이벤트 발생");
+        });
+
+        $("#btn3").on("click", function() {
+            alert("cdn으로 jquery 로딩 후 버튼 이벤트 발생");
+        });
+    </script>
+</body>
+</html>
