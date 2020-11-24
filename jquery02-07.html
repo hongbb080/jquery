@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery 2-7</title>
+    
+    <script src="./jquery-3.5.1.js"></script>
+
+    <!--jquery 크기 함수
+        width() : 지정한 요소의 너비를 가져오거나 설정
+        height() : 지정한 요소의 높이를 가져오거나 설정
+        innerwidth() : 지정한 요소의 너비를 가져오거나 설정(padding 영역 포함)
+        innerheight() : 지정한 요소의 높이를 가져오거나 설정(padding 영역 포함)
+        outerwidth() : 지정한 요소의 너비를 가져오거나 설정(border 영역 포함)
+        outerheight() : 지정한 요소의 높이를 가져오거나 설정(border 영역 포함) -->
+    
+    <script>
+        $(document).ready(function() {
+            $("#btnWH").on("click", function() {
+                var txt = "";
+                txt += "div의 너비는 " + $("#div1").width() + "</br>";
+                txt += "div의 높이는 " + $("#div1").height();
+                $("#div1").html(txt);
+            });
+            
+            $("#btnInnerWH").on("click", function() {
+                var txt = "";
+                txt += "div의 너비는 " + $("#div1").width() + "</br>";
+                txt += "div의 높이는 " + $("#div1").height() + "</br>";
+                txt += "div의 padding까지의 너비는 " + $("#div1").innerWidth() + "</br>";
+                txt += "div의 padding까지의 높이는 " + $("#div1").innerHeight();
+                $("#div1").html(txt);
+            });
+
+            $("#btnOuterWH").on("click", function() {
+                var txt = "";
+                txt += "div의 너비는 " + $("#div1").width() + "</br>";
+                txt += "div의 높이는 " + $("#div1").height();
+                txt += "div의 padding까지의 너비는 " + $("#div1").innerWidth() + "</br>";
+                txt += "div의 padding까지의 높이는 " + $("#div1").innerHeight();
+                txt += "div의 border까지의 너비는 " + $("#div1").outerWidth() + "</br>";
+                txt += "div의 border까지의 높이는 " + $("#div1").outerHeight();
+                $("#div1").html(txt);
+            })
+        });
+    </script>
+
+    <style>
+        #div1 {
+            height: 200px;
+            width: 300px;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid blue;
+            background-color: lightskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+
+    <br>
+    <button id="btnWH">div의 크기 출력</button>
+    <button id="btnInnerWH">div의 padding 영역까지의 크기 출력</button>
+    <button id="btnOuterWH">div의 border 영역까지의 크기 출력</button>
+    <p id="p1"></p>
+    <p id="p2"></p>
+</body>
+</html>
